@@ -1,3 +1,5 @@
 function dldx = relu_backward(x, dldy)
-    error('Implement this');
+    dldx = dldy;
+    dldx(x <- 0) = 0;
+    %error('Implement this');
 end

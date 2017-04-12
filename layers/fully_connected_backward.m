@@ -29,7 +29,12 @@ function [dldX, dldA, dldb] = fully_connected_backward(X, dldY, A, b)
     assert(size(A, 1) == numel(b), 'Expected as many rows in A as elements in b');
     
     % Implement it here.
-    error('Implement the backward pass!');
+    %MIN KOD HÄR!!
+    dldX = A'*dldY;
+    dldA = dldY*X';
+    dldb = dldY*ones(batch,1);
+    %MIN KOD HÄR!!
+    %error('Implement the backward pass!');
     
     % note that dldX should have the same size as X, so use reshape
     dldX = reshape(dldX, sz);

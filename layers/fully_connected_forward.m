@@ -21,5 +21,9 @@ function Y = fully_connected_forward(X, A, b)
         sprintf('Expected %d columns in the weights matrix, got %d', features, size(A,2)));
     assert(size(A, 1) == numel(b), 'Expected as many rows in A as elements in b');
     
-    error('Implement this');
+    %MIN KOD HÄR!!
+    b = repmat(b, 1, batch);
+    Y = A*X + b;
+    %MIN KOD HÄR!!
+    %error('Implement this');
 end

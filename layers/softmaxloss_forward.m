@@ -16,10 +16,17 @@ function L = softmaxloss_forward(x, labels)
 
     assert(batch == numel(labels), 'Wrong number of labels given');
     % We reshape x in the same way as for the fully connected layer
-    x = reshape(x, [features, batch]);
+    %x = reshape(x, [features, batch]);
     % for numerical reasons. Convince yourself that the result is the same.
-    x = bsxfun(@minus, x, min(x, [], 1));
+    %x = bsxfun(@minus, x, min(x, [], 1));
 
-    error('Implement this function');
+    %MIN KOD HÄR
+    idx = sub2ind(size(x), labels');
+    xc = x(idx);
+    logs = log(sum(exp(x)));
+    L = -xc + logs;
+    L = mean(L(:));
+
+    %error('Implement this function');
     
 end
