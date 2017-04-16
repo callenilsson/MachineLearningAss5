@@ -70,8 +70,21 @@ function net = training(net, x, labels, opts)
                         if it==1
                             momentum{i}.(s) = zeros(size(net.layers{i}.params.(s)));
                         end
+                        
+                        %%MIN KOD
                         mu = opts.momentum;
-                        error('Implement this');
+                        mn_prev = momentum{i}.(s);
+                        dldtheta = grads{i}.(s);
+                        mn = mu*mn_prev + (1-mu)*dldtheta;
+                        
+                        theta = net.layers{i}.params.(s);
+                        momentum{i}.(s) = mn;
+                        learning_rate = opts.learning_rate;
+                        lambda = opts.weight_decay;
+                        new_theta = theta - learning_rate * (momentum{i}.(s) + lambda * theta);
+                        net.layers{i}.params.(s) = new_theta;
+                        
+                        %error('Implement this');
                     else
                         % run normal gradient descent if 
                         % the momentum parameter not is specified

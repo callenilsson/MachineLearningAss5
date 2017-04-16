@@ -21,22 +21,12 @@ function dldx = softmaxloss_backward(x, labels)
     %MIN KOD HÄR
     
     %x = bsxfun(@minus, x, min(x, [], 1));
-    x;
-    dldx = zeros(sz);
-    labels;
-    
-    sum2 = sum(exp(x));
-    
-    for j = 1:sz(2)
-        for i = 1:sz(1)
-            if i ==  labels(j)
-                dldx(i,j) = dldx(i,j) - 1;
-            end
-            dldx(i,j) = dldx(i,j) + exp(x(i,j))/sum2(j);
-        end
-    end
-    
-    dldx
+    labels = labels(:);
+    y = (bsxfun(@rdivide, exp(x), sum(exp(x), 1)));
+    x_is_xc = zeros(features, batch);
+    index = sub2ind(size(x_is_xc), labels', 1:batch);
+    x_is_xc(index) = -1;
+    dldx = (y + x_is_xc)/batch;
     
     %error('Implement this function');
     

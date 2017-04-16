@@ -30,9 +30,10 @@ function [dldX, dldA, dldb] = fully_connected_backward(X, dldY, A, b)
     
     % Implement it here.
     %MIN KOD HÄR!!
+    pad = ones(batch,1);
     dldX = A'*dldY;
     dldA = dldY*X';
-    dldb = dldY*ones(batch,1);
+    dldb = dldY*pad;
     %MIN KOD HÄR!!
     %error('Implement the backward pass!');
     

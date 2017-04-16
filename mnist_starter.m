@@ -16,7 +16,7 @@ function mnist_starter()
     x_test = reshape(x_test, [28, 28, 1, 10000]);
     
     % visualize the images?
-    if true
+    if false
         for i=1:6
             for j=1:6
                 subplot(6,6,6*(i-1)+j);

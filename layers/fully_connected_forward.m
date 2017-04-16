@@ -22,8 +22,8 @@ function Y = fully_connected_forward(X, A, b)
     assert(size(A, 1) == numel(b), 'Expected as many rows in A as elements in b');
     
     %MIN KOD HÄR!!
-    b = repmat(b, 1, batch);
-    Y = A*X + b;
+    pad = ones(1, batch);
+    Y = A*X + b*pad;
     %MIN KOD HÄR!!
     %error('Implement this');
 end

@@ -21,11 +21,18 @@ function L = softmaxloss_forward(x, labels)
     %x = bsxfun(@minus, x, min(x, [], 1));
 
     %MIN KOD HÄR
-    idx = sub2ind(size(x), labels');
-    xc = x(idx);
+    labels = labels(:);
+    xc = zeros(features, batch);
+    index = sub2ind(size(xc), labels', 1:batch);
+    xc = x(index);
     logs = log(sum(exp(x)));
-    L = -xc + logs;
-    L = mean(L(:));
+    L = mean(logs - xc);
+    
+    %idx = sub2ind(size(x), labels');
+    %xc = x(idx);
+    %logs = log(sum(exp(x)));
+    %L = -xc + logs;
+    %L = mean(L(:));
 
     %error('Implement this function');
     
